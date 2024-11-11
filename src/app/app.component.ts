@@ -5,11 +5,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { GamesListComponent } from './components/games-list/games-list.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FormsModule, CommonModule, RouterLink, RouterLinkActive, ViewProfileComponent],
+  imports: [RouterOutlet, FormsModule, CommonModule, RouterLink, RouterLinkActive, ViewProfileComponent, GamesListComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
