@@ -1,3 +1,116 @@
-.edit-form{
-    padding:100px;
+.profile-header {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 400px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin: auto;
+  font-family: Arial, sans-serif;
+}
+
+.avatar-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.avatar-container img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.avatar-placeholder {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  color: #fff;
+  font-weight: bold;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #c82333;
+}
+
+.editable-field {
+  margin: 15px 0;
+  text-align: left;
+}
+
+.editable-field h2,
+.editable-field p {
+  font-size: 16px;
+  color: #495057;
+  margin: 5px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.editable-field button {
+  background-color: transparent;
+  border: none;
+  color: #f0d400;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.editable-field button:hover {
+  text-decoration: underline;
+}
+
+.editable-field input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #495057;
+  margin-top: 8px;
+}
+
+.editable-field input:focus {
+  border-color: #80bdff;
+  outline: none;
+  box-shadow: 0px 0px 5px rgba(228, 197, 70, 0.5);
+}
+
+button.save-profile {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+button.save-profile:hover {
+  background-color: #0056b3;
 }
