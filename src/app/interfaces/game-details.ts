@@ -1,5 +1,5 @@
 import { MinimumSystemRequirements } from "./minimum-system-requirements"
-import { Screenshots } from "./screenshots"
+import { Screenshot } from "./screenshot"
 
 export interface GameDetails {
     id: string
@@ -16,5 +16,5 @@ export interface GameDetails {
     releaseDate: string
     freetogameProfileUrl: string
     minimumSystemRequirements: MinimumSystemRequirements
-    screenshots: Array<Screenshots>
+    screenshots: Array<Screenshot>
 }

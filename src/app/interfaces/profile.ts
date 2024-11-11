@@ -5,6 +5,6 @@ export interface Profile {
     name: string
     email: string
     password: string
-    avatar: string
-    lists: List
+    avatar: string | null
+    lists: List []
 }
