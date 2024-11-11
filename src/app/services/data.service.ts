@@ -23,7 +23,6 @@ export class DataService {
     return this.http.put(`${this.apiUrl}/profile`, profile);
   }
 
-
   getGames(): Observable<any>{
     return this.http.get<any>(`${this.apiUrl}/gamesList`)
   }
