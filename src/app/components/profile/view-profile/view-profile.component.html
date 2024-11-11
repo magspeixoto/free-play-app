@@ -12,7 +12,10 @@
     </div>
     <h2>{{ profile.name }}</h2>
     <p>Email: {{ profile.email }}</p>
-  </div>
+
+    <button (click)="navigateToEditProfile()" class="edit-button">
+      Edit Profile
+    </button>
 
   <h3>Lists:</h3>
   <ul>
