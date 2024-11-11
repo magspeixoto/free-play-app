@@ -1,0 +1,23 @@
+<div *ngIf="profile">
+  <div class="profile-header">
+    <div class="avatar-container">
+      <ng-container *ngIf="profile.avatar; else noAvatar">
+        <img [src]="profile.avatar" alt="User Avatar">
+      </ng-container>
+      <ng-template #noAvatar>
+        <div class="avatar-placeholder" [style.backgroundColor]="'#6c757d'">
+          <span>{{ profile.name[0] | uppercase }}</span>
+        </div>
+      </ng-template>
+    </div>
+    <h2>{{ profile.name }}</h2>
+    <p>Email: {{ profile.email }}</p>
+  </div>
+
+  <h3>Lists:</h3>
+  <ul>
+    <li *ngFor="let list of profile.lists">
+      <strong>{{ list.name }}</strong> - Games: {{ list.gamesIds.join(', ') }}
+    </li>
+  </ul>
+</div>
