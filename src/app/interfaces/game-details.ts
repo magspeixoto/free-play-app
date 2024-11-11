@@ -1,4 +1,5 @@
 import { MinimumSystemRequirements } from "./minimum-system-requirements"
+import { Platform } from "./platform"
 import { Screenshot } from "./screenshot"
 
 export interface GameDetails {
