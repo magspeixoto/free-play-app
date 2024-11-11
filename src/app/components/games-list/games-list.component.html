@@ -11,13 +11,9 @@
           <div class="card-body">
               <h5 class="card-title">{{game.title}}</h5>
               <p class="card-text">{{game.shortDescription}}</p>
-              <p class="card-text"><strong>Genre:</strong> {{game.genre}}</p>
-              <p class="card-text"><strong>Platform:</strong> {{game.platform}}</p>
-              <p class="card-text"><strong>Publisher:</strong> {{game.publisher}}</p>
-              <p class="card-text"><strong>Developer:</strong> {{game.developer}}</p>
-              <p class="card-text"><strong>Release Date:</strong> {{game.releaseDate}}</p>
+              
               <p class="card-text">
-                  <a href="{{game.gameUrl}}" target="_blank" class="btn btn-primary">Play Now</a>
+                  <a routerLink="/games-details" class="btn btn-primary">Ver detalhes</a>
                   <a href="{{game.freetogameProfileUrl}}" target="_blank" class="btn btn-secondary">More Info</a>
               </p>
               <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
