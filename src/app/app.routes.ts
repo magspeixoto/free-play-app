@@ -9,7 +9,9 @@ export const routes: Routes = [
     {path: 'profile', component: ViewProfileComponent },   
     {path: 'edit-profile', component: EditProfileComponent },  
     {path: 'games-details', component: GamesDetailsComponent},
-    {path: 'my-games', component: MyGamesComponent}
-    {path:'games-details/:id', component: GamesDetailsComponent}
+    {path: 'my-games', component: MyGamesComponent},
+    {path:'games-details/:id', component: GamesDetailsComponent},
+
     {path:'', component: GamesListComponent},
+    {path:'games-list', component: GamesListComponent},
 ];
