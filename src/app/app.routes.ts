@@ -3,12 +3,13 @@ import { ViewProfileComponent } from './components/profile/view-profile/view-pro
 import { GamesListComponent } from './components/games-list/games-list.component';
 import { EditProfileComponent } from './components/profile/edit-profile/edit-profile.component';
 import { GamesDetailsComponent } from './games-details/games-details.component';
+import { MyGamesComponent } from './components/my-games/my-games.component';
 
 export const routes: Routes = [
-    {path:'profile', component: ViewProfileComponent },   
-    {path:'edit-profile', component: EditProfileComponent },  
-    {path:'', component: GamesListComponent},
+    {path: 'profile', component: ViewProfileComponent },   
+    {path: 'edit-profile', component: EditProfileComponent },  
+    {path: 'games-details', component: GamesDetailsComponent},
+    {path: 'my-games', component: MyGamesComponent}
     {path:'games-details/:id', component: GamesDetailsComponent}
-
-
+    {path:'', component: GamesListComponent},
 ];
