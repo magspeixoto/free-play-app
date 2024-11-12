@@ -28,7 +28,7 @@ export class DataService {
     return this.http.get<any>(`${this.apiUrl}/gamesList`)
   }
   getGame(id: string): Observable<any>{
-    return this.http.get<any>(`${this.apiUrl}/gamesList/` + id)
+    return this.http.get<any>(`${this.apiUrl}/gameDetails/` + id)
   }
 
 }

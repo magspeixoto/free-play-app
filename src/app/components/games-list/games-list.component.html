@@ -12,12 +12,12 @@
               <h5 class="card-title">{{game.title}}</h5>
               <p class="card-text">{{game.shortDescription}}</p>
               
-              <p class="card-text">
-                  <a routerLink="/games-details" class="btn btn-primary">Ver detalhes</a>
-                  <a href="{{game.freetogameProfileUrl}}" target="_blank" class="btn btn-secondary">More Info</a>
-              </p>
+              <div class="card-text">
+                  <a [routerLink]="['/games-details', game.id]" class="btn btn-primary">Ver mais</a>
+                  <a routerLink="{{game.freetogameProfileUrl}}" target="_blank" class="btn btn-secondary">More Info</a>
+              </div>
               <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-              <div class="cartao" [routerLink]="'/games-details/' + game.id">
+              <div class="cartao" >
                   <h3>{{game.title}}
                       <small>(#{{game.id}})</small>
                   </h3>

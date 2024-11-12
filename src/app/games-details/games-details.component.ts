@@ -16,10 +16,11 @@ export class GamesDetailsComponent {
 
   constructor(private dataService: DataService, private router: Router, private route: ActivatedRoute){}
   ngOnInit() {
+    //buscar info do id epassarpor rota
+    /* console.log(this.route.snapshot.paramMap.get('id')) */
+    const id = this.route.snapshot.paramMap.get('id') || '5';
     
-    console.log('AQUI', this.route.snapshot.paramMap.get('id'));
-    const id = this.route.snapshot.paramMap.get('id') || '1';
-    
+
     this.dataService.getGame(id).subscribe({
       next: data => {
         console.log(data);
