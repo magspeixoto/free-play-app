@@ -16,50 +16,46 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './my-games.component.html',
   styleUrl: './my-games.component.scss'
 })
-export class MyGamesComponent {
-  games: Array<GamesList> = []
-  displayedColumns: string[] = ['id', 'thumbnail', 'title', 'genre'];
-  //dataSource = new MatTableDataSource<GamesList>(this.getGames());
-  
-  dataSource: GamesList[]
+export class MyGamesComponent implements AfterViewInit, OnInit {
+  games: GamesList[] = []
+  displayedColumns: string[] = ['id', 'thumbnail', 'title', 'genre']
+  dataSource: MatTableDataSource<GamesList>;
 
-  /* @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort; */
+  @ViewChild(MatPaginator) paginator!: MatPaginator
+  @ViewChild(MatSort) sort!: MatSort
 
-  /* constructor(private dataService: DataService){
-    //this.dataSource = new MatTableDataSource(dataSource);
-  } */
-    constructor(private dataService: DataService){
+  //constructor(private dataService: DataService) {
+    // Assign the data to the data source for the table to render
+  //  this.dataSource = new MatTableDataSource<GamesList>()
+  //}
+  constructor(private dataService: DataService) {}
 
+  ngAfterViewInit() {
+    if (this.paginator && this.sort) {
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     }
+  }
 
-  /* ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  } */
-
-  /* applyFilter(event: Event) {
+  applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
-  } */
-
-  ngOnInit(){
-    this.getGames()
   }
 
-  getGames(){
+  ngOnInit(){
     this.dataService.getGames().subscribe({
       next: (data) => {
-        console.log(data);
         this.games = data;
-        
-      }, error: (error) => {
-        console.log('Deu erro ', error);
-      }
-    })
-  } 
+        this.dataSource = new MatTableDataSource(this.games);  // Cria o dataSource após os dados carregarem
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      },
+      error: (error) => console.log('Erro ao carregar dados: ', error)
+    });
+  }    
 }
+
