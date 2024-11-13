@@ -1,20 +1,26 @@
-<h1>Detalhes do Jogo</h1>
+<h1 class="text-center mb-5">Detalhes do Jogo</h1>
 
-        <div class="cartao" >
-            <h3>{{game?.title}} 
-                <small>(#{{game?.id}})</small>
-            </h3>
-            
-            <img src="{{game?.thumbnail}}">
-            
-            <p><strong>Genre:</strong> {{game?.genre}}</p>
-            <p><strong>Platform:</strong> {{game?.platform}}</p>
-<!--             <p><strong>Publisher:</strong> {{game?.publisher}}</p>
- -->            <p><strong>Developer:</strong> {{game?.developer}}</p>
-            <p><strong>Release Date:</strong> {{game?.releaseDate}}</p>
-
-            <div>
-                <a href="{{game?.gameUrl}}" target="_blank" class="btn btn-primary">Play Now</a>
-                <a href="{{game?.freetogameProfileUrl}}" target="_blank" class="btn btn-secondary">More Info</a>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm rounded-lg border-0 overflow-hidden">
+                <img src="{{game?.thumbnail}}" class="card-img-top" alt="{{game?.title}}" style="object-fit: cover; height: 300px;">
+                <div class="card-body">
+                    <h3 class="card-title text-primary">{{game?.title}} 
+                        <small class="text-muted">(#{{game?.id}})</small>
+                    </h3>
+                    <p class="card-text"><strong>Genre:</strong> {{game?.genre}}</p>
+                    <p class="card-text"><strong>Platform:</strong> {{game?.platform}}</p>
+                    <!-- <p class="card-text"><strong>Publisher:</strong> {{game?.publisher}}</p> -->
+                    <p class="card-text"><strong>Developer:</strong> {{game?.developer}}</p>
+                    <p class="card-text"><strong>Release Date:</strong> {{game?.releaseDate}}</p>
+                    
+                    <div class="d-flex gap-2 mt-3">
+                        <a href="{{game?.gameUrl}}" target="_blank" class="btn btn-primary btn-lg">Play Now</a>
+                        <a href="{{game?.freetogameProfileUrl}}" target="_blank" class="btn btn-outline-secondary btn-lg">More Info</a>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
+</div>

@@ -12,4 +12,5 @@ export const routes: Routes = [
     {path: 'my-games', component: MyGamesComponent},
     {path:'games-details/:id', component: GamesDetailsComponent},
     {path:'', component: GamesListComponent},
+    {path:'games-list', component: GamesListComponent},
 ];
