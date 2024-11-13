@@ -1,100 +1,101 @@
 /* Estilo da Logo */
 .navbar-brand .logo {
-    height: 70px;  /* Ajuste o tamanho da logo conforme necessário */
-    width: auto;
-  }
-  
-  /* Navbar principal - tons mais escuros */
-  .navbar {
-    background-color: #343a40;  /* Azul escuro para a navbar */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);  /* Sombra suave */
-  }
-  
-  /* Estilo dos links da navbar */
-  .nav-link {
-    font-size: 1rem;  /* Tamanho de fonte do link */
-    color: #adb5bd;  /* Cor mais clara de cinza-azulado para os links */
-    padding: 10px 15px;  /* Espaciamento interno */
-    transition: color 0.3s ease, background-color 0.3s ease;  /* Transição suave */
-    display: flex;
-    align-items: center;  /* Alinha o ícone e o texto */
-    border-radius: 7px;
-  }
-  
-  .nav-link i {
-    margin-right: 8px;  /* Espaço entre o ícone e o texto */
-    font-size: 1.2rem;  /* Tamanho do ícone */
-  }
-  
-  .nav-link:hover {
-    background-color: #007bff;  /* Cor de fundo ao passar o mouse */
-    color: white;  /* Cor do texto ao passar o mouse */
-    border-radius: 7px;  /* Bordas arredondadas */
-  }
-  
-  /* Menu dropdown para telas pequenas */
-  .navbar-toggler {
-    border: none;
-    background-color: #007bff;
-  }
-  
-  .navbar-toggler-icon {
-    background-color: white;
-  }
-  
-  /* Formulário de busca */
-  .form-control {
-    max-width: 250px;  /* Limita a largura do campo de busca */
-  }
-  
-  .btn-outline-light {
-    background-color: transparent;
-    border-color: #adb5bd;
-    color: #adb5bd;  /* Cor dos ícones e texto */
-    
-  }
-  
-  .btn-outline-light:hover {
-    background-color: #007bff;
-    border-color: #007bff;
-    color: white;  /* Cor dos ícones e texto ao passar o mouse */
-    
-  }
-  
-  .btn-outline-light i {
-    color: #adb5bd;
-  }
-  
-  .btn-outline-light:hover i {
-    color: white;
-  }
-  
-  /* Navbar em dispositivos pequenos */
-  @media (max-width: 992px) {
-    .navbar-nav {
-      text-align: center;  /* Alinha os links centralizados em dispositivos pequenos */
-    }
-  
-    .navbar-nav .nav-item {
-      margin-bottom: 10px;  /* Espaçamento entre os itens de navegação */
-    }
-  
-    .form-control {
-      max-width: 100%;  /* Formulário de busca ocupa toda a largura */
-    }
-  }
-  
-  /* Estilo da navbar fixa */
-  .navbar.fixed-top {
-    z-index: 1000;
-    height: 70px;
-  }
-  
-  /* Navbar com links espalhados por toda a página */
+  height: 70px;  /* Ajuste o tamanho da logo conforme necessário */
+  width: auto;
+}
+
+/* Navbar principal - tons mais escuros */
+.navbar {
+  background-color: #343a40;  /* Azul escuro para a navbar */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);  /* Sombra suave */
+}
+
+/* Estilo dos links da navbar */
+.nav-link {
+  font-size: 1rem;  /* Tamanho de fonte do link */
+  color: #adb5bd;  /* Cor mais clara de cinza-azulado para os links */
+  padding: 10px 15px;  /* Espaciamento interno */
+  transition: color 0.3s ease, background-color 0.3s ease;  /* Transição suave */
+  display: flex;
+  align-items: center;  /* Alinha o ícone e o texto */
+  border-radius: 7px;
+}
+
+.nav-link i {
+  margin-right: 8px;  /* Espaço entre o ícone e o texto */
+  font-size: 1.2rem;  /* Tamanho do ícone */
+}
+
+.nav-link:hover {
+  background-color: #007bff;  /* Cor de fundo ao passar o mouse */
+  color: white;  /* Cor do texto ao passar o mouse */
+  border-radius: 7px;  /* Bordas arredondadas */
+}
+
+/* Menu dropdown para telas pequenas */
+.navbar-toggler {
+  border: none;
+  background-color: #007bff;
+}
+
+.navbar-toggler-icon {
+  background-color: white;
+}
+
+/* Formulário de busca */
+.form-control {
+  max-width: 250px;  /* Limita a largura do campo de busca */
+}
+
+.btn-outline-light {
+  background-color: transparent;
+  border-color: #adb5bd;
+  color: #adb5bd;  /* Cor dos ícones e texto */
+}
+
+.btn-outline-light:hover {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: white;  /* Cor dos ícones e texto ao passar o mouse */
+}
+
+.btn-outline-light i {
+  color: #adb5bd;
+}
+
+.btn-outline-light:hover i {
+  color: white;
+}
+
+/* Navbar em dispositivos pequenos */
+@media (max-width: 992px) {
   .navbar-nav {
-    display: flex;
-    justify-content: space-around;  /* Distribui os links igualmente com espaçamento entre eles */
-    width: 100%;  /* Garantir que os links usem toda a largura disponível */
+      text-align: center;  /* Alinha os links centralizados em dispositivos pequenos */
   }
 
-  
+  .navbar-nav .nav-item {
+      margin-bottom: 10px;  /* Espaçamento entre os itens de navegação */
+  }
+
+  .form-control {
+      max-width: 100%;  /* Formulário de busca ocupa toda a largura */
+  }
+}
+
+/* Estilo da navbar fixa */
+.navbar.fixed-top {
+  z-index: 1000;
+  height: 70px;
+}
+
+/* Navbar com links espalhados por toda a página */
+.navbar-nav {
+  display: flex;
+  justify-content: space-around;  /* Distribui os links igualmente com espaçamento entre eles */
+  width: 100%;  /* Garantir que os links usem toda a largura disponível */
+}
+
+/* Adiciona um espaçamento inferior de 50px em todos os elementos diretos do componente */
+.app-my-games > * {
+  margin-bottom: 50px;
+}
