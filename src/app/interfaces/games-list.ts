@@ -10,4 +10,5 @@ export interface GamesList {
     developer: string
     releaseDate: string
     freetogameProfileUrl: string
+    listType: 'later' | 'playing' | 'played' | 'completed';
 }

@@ -1,3 +1,20 @@
+.mat-mdc-text-field-wrapper {
+  width: 100%;
+  z-index: 0;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+/* Estilo para centralizar e espaçar a primeira div */
+div .example-button-row {
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center;    /* Centraliza verticalmente */
+  gap: 16px;              /* Espaçamento entre os itens internos */
+  padding: 20px;          /* Espaçamento interno */
+  margin: 0 auto;         /* Garante que o conteúdo esteja no centro do contêiner */
+}
+
 .mat-mdc-table {
   min-width: 100%;
   border: 0;

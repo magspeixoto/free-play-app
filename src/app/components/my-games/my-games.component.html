@@ -5,10 +5,10 @@
 </mat-form-field>
 <section>
   <div class="example-button-row">
-    <a mat-flat-button href="">Jogar mais tarde</a>
-    <a mat-flat-button href="">A Jogar Atualmente</a>
-    <a mat-flat-button href="">Jogado</a>
-    <a mat-flat-button href="">Concluído</a>
+    <button mat-flat-button (click)="filterByList('later')">Jogar mais tarde</button>
+    <button mat-flat-button (click)="filterByList('playing')">A Jogar Atualmente</button>
+    <button mat-flat-button (click)="filterByList('played')">Jogado</button>
+    <button mat-flat-button (click)="filterByList('completed')">Concluído</button>
   </div>
 </section>
 <div class="mat-elevation-z8">
