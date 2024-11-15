@@ -2,7 +2,14 @@
   <mat-label>Filtro</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Pesquisa" #input>
 </mat-form-field>
-
+<section>
+  <div class="example-button-row">
+    <a mat-flat-button href="">Jogar mais tarde</a>
+    <a mat-flat-button href="">A Jogar Atualmente</a>
+    <a mat-flat-button href="">Jogado</a>
+    <a mat-flat-button href="">Concluído</a>
+  </div>
+</section>
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort>
 
