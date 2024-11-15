@@ -21,11 +21,10 @@
                                         <p class="card-text text-muted">{{game.shortDescription}}</p>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <!-- Botão laranja 'Ver mais' -->
-                                            <a [routerLink]="['/games-details', game.id]" class="btn btn-warning btn-sm">Ver mais</a>
+                                            <a [routerLink]="['/games-details', game.id]" style="color: white; background-color: #CD853F;" class="btn btn-warning btn-sm">Ver mais</a>
                                             <!-- Botão laranja 'More Info' -->
-                                            <a routerLink="{{game.freetogameProfileUrl}}" target="_blank" class="btn btn-outline-warning btn-sm">More Info</a>
                                         </div>
-                                        <p class="card-text mt-2"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                        
                                     </div>
                                 </div>
                             </div>

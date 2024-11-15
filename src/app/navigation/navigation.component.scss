@@ -10,6 +10,19 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);  /* Sombra suave */
 }
 
+/* Hover effect for navbar buttons */
+.navbar-nav .nav-link:hover {
+  background-color: #CD853F; /* Laranja */
+  color: #fff; /* Cor do texto branca para contraste */
+}
+
+/* Hover effect for search button */
+.navbar .btn-outline-light:hover {
+  background-color: #CD853F; /* Laranja */
+  border-color: #CD853F; /* Borda laranja */
+}
+
+
 /* Estilo dos links da navbar */
 .nav-link {
   font-size: 1rem;  /* Tamanho de fonte do link */

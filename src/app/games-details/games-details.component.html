@@ -6,7 +6,7 @@
             <div class="card shadow-sm rounded-lg border-0 overflow-hidden">
                 <img src="{{game?.thumbnail}}" class="card-img-top" alt="{{game?.title}}" style="object-fit: cover; height: 300px;">
                 <div class="card-body">
-                    <h3 class="card-title text-primary">{{game?.title}} 
+                    <h3 class="card-title">{{game?.title}} 
                         <small class="text-muted">(#{{game?.id}})</small>
                     </h3>
                     <p class="card-text"><strong>Genre:</strong> {{game?.genre}}</p>
@@ -16,8 +16,7 @@
                     <p class="card-text"><strong>Release Date:</strong> {{game?.releaseDate}}</p>
                     
                     <div class="d-flex gap-2 mt-3">
-                        <a href="{{game?.gameUrl}}" target="_blank" class="btn btn-primary btn-lg">Play Now</a>
-                        <a href="{{game?.freetogameProfileUrl}}" target="_blank" class="btn btn-outline-secondary btn-lg">More Info</a>
+                        <a href="{{game?.gameUrl}}" target="_blank" style="background-color: #CD853F; color: white;" class="btn btn-lg">Play Now</a>
                     </div>
                 </div>
             </div>
