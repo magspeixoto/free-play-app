@@ -1,3 +1,4 @@
+<div style="margin-top: 100px;">
 <mat-form-field>
   <mat-label>Filtro</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Pesquisa" #input>
@@ -76,4 +77,5 @@
   </table>
 
   <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Página"></mat-paginator>
+</div>
 </div>
