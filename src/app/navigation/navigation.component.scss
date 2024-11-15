@@ -50,6 +50,388 @@
   border: none;
   background-color: #007bff;
 }
+/* Ensure dropdown items are nicely spaced */
+.dropdown-item {
+  cursor: pointer;
+}
+
+/* Estilos gerais do container de resultados de pesquisa */
+.search-results {
+  position: absolute;  /* Fica logo abaixo do campo de pesquisa */
+  top: 70px;  /* Ajuste para ficar logo abaixo do input de pesquisa */
+  left: 10px;
+  right: 10px;
+  background-color: white;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  z-index: 1000;  /* Garante que a caixa fique sobre outros elementos */
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+/* Cada item de pesquisa */
+.search-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.search-item:last-child {
+  border-bottom: none;
+}
+
+.search-item-thumbnail {
+  flex: 0 0 60px;
+  margin-right: 15px;
+}
+
+.search-item-thumbnail img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.search-item-info {
+  flex: 1;
+}
+
+.search-item-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.search-item-description {
+  font-size: 14px;
+  color: #555;
+}
+/* Estilos para o Dropdown de Resultados de Pesquisa */
+.search-results {
+  position: absolute;
+  top: 100%; /* Faz com que os resultados apareçam logo abaixo do input */
+  left: 0;
+  right: 0;
+  max-height: 300px; /* Limita a altura máxima */
+  overflow-y: auto; /* Rolagem se houver muitos resultados */
+  background-color: #fff; /* Fundo branco */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidade */
+  border-radius: 8px; /* Bordas arredondadas */
+  z-index: 9999; /* Certifica-se de que os resultados fiquem acima de outros elementos */
+  padding: 8px 0;
+  width: 100%; /* Faz com que a largura do dropdown seja igual ao do input */
+}
+
+/* Estilo para cada item do resultado */
+.search-item {
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-item:hover {
+  background-color: #f7f7f7; /* Cor de fundo ao passar o mouse */
+}
+
+.search-item-thumbnail {
+  margin-right: 12px;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.search-item-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.search-item-info {
+  flex-grow: 1;
+}
+
+.search-item-title {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.search-item-description {
+  font-size: 12px;
+  color: #666;
+  margin: 4px 0 0 0;
+}
+
+/* Indicador de carregamento */
+.loading-indicator {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 14px;
+  color: #999;
+}
+
+/* Estilos para o Dropdown de Resultados de Pesquisa */
+.search-results {
+  position: absolute;
+  top: 100%; /* Faz com que os resultados apareçam logo abaixo do input */
+  left: 0;
+  right: 0;
+  max-height: 300px; /* Limita a altura máxima */
+  overflow-y: auto; /* Rolagem se houver muitos resultados */
+  background-color: #fff; /* Fundo branco */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidade */
+  border-radius: 10px; /* Bordas mais arredondadas */
+  z-index: 9999; /* Certifica-se de que os resultados fiquem acima de outros elementos */
+  padding: 8px 0;
+  width: 100%; /* Faz com que a largura do dropdown seja igual ao do input */
+  transition: all 0.3s ease-in-out; /* Transição suave */
+}
+
+/* Estilo para cada item do resultado */
+.search-item {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border-bottom: 1px solid #f0f0f0; /* Separador sutil entre os itens */
+}
+
+.search-item:hover {
+  background-color: #f5f5f5; /* Cor de fundo suave ao passar o mouse */
+  transform: translateX(5px); /* Leve movimento de "deslocamento" ao passar o mouse */
+}
+
+/* Thumbnail do jogo */
+.search-item-thumbnail {
+  margin-right: 16px;
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.search-item-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Efeito de zoom na imagem da miniatura */
+.search-item-thumbnail:hover img {
+  transform: scale(1.1); /* Zoom suave na imagem */
+}
+
+/* Informações do jogo */
+.search-item-info {
+  flex-grow: 1;
+}
+
+.search-item-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  color: #333; /* Cor de texto mais escura para o título */
+}
+
+.search-item-description {
+  font-size: 14px;
+  color: #666; /* Cor de texto mais clara para a descrição */
+  margin: 4px 0 0 0;
+}
+
+/* Indicador de carregamento */
+.loading-indicator {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 14px;
+  color: #999;
+}
+/* Estilos para o Dropdown de Resultados de Pesquisa */
+.search-results {
+  position: absolute;
+  top: 100%; /* Faz com que os resultados apareçam logo abaixo do input */
+  left: 0;
+  width: 100%; /* A largura será 100% da largura do input */
+  max-height: 300px; /* Limita a altura máxima */
+  overflow-y: auto; /* Rolagem se houver muitos resultados */
+  background-color: #fff; /* Fundo branco */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidade */
+  border-radius: 10px; /* Bordas mais arredondadas */
+  z-index: 9999; /* Certifica-se de que os resultados fiquem acima de outros elementos */
+  padding: 8px 0;
+  transition: all 0.3s ease-in-out; /* Transição suave */
+  margin-top: 4px; /* Pequeno espaço entre o input e os resultados */
+}
+
+/* Estilo para cada item do resultado */
+.search-item {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border-bottom: 1px solid #f0f0f0; /* Separador sutil entre os itens */
+}
+
+.search-item:hover {
+  background-color: #f5f5f5; /* Cor de fundo suave ao passar o mouse */
+  transform: translateX(5px); /* Leve movimento de "deslocamento" ao passar o mouse */
+}
+
+/* Thumbnail do jogo */
+.search-item-thumbnail {
+  margin-right: 16px;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.search-item-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Efeito de zoom na imagem da miniatura */
+.search-item-thumbnail:hover img {
+  transform: scale(1.1); /* Zoom suave na imagem */
+}
+
+/* Informações do jogo */
+.search-item-info {
+  flex-grow: 1;
+}
+
+.search-item-title {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0;
+  color: #333; /* Cor de texto mais escura para o título */
+}
+
+.search-item-description {
+  font-size: 12px;
+  color: #666; /* Cor de texto mais clara para a descrição */
+  margin: 4px 0 0 0;
+}
+/* Ajustes para o contêiner de pesquisa */
+.search-container {
+  position: relative;
+  width: 100%; /* Garante que a largura do input seja 100% */
+}
+
+/* Estilos para o dropdown de resultados */
+.search-results {
+  position: absolute;
+  top: 100%; /* Posiciona a lista logo abaixo do input */
+  left: 0;
+  width: 100%; /* A largura do dropdown será 100% da largura do input */
+  max-height: 300px;
+  overflow-y: auto; /* Se houver mais itens do que a altura definida, pode rolar */
+  background-color: #fff; /* Fundo branco */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra leve */
+  border-radius: 10px; /* Bordas arredondadas */
+  z-index: 9999; /* Garante que o dropdown fique por cima de outros elementos */
+  margin-top: 5px; /* Pequeno espaço entre o input e a lista */
+}
+
+/* Estilos para cada item dentro do dropdown */
+.search-item {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border-bottom: 1px solid #f0f0f0; /* Separador sutil entre os itens */
+}
+
+.search-item:hover {
+  background-color: #f5f5f5; /* Cor de fundo suave ao passar o mouse */
+  transform: translateX(5px); /* Leve movimento de "deslocamento" ao passar o mouse */
+}
+
+/* Estilos para a miniatura do jogo */
+.search-item-thumbnail {
+  margin-right: 16px;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.search-item-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Informações do jogo */
+.search-item-info {
+  flex-grow: 1;
+}
+
+.search-item-title {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0;
+  color: #333;
+}
+
+.search-item-description {
+  font-size: 12px;
+  color: #666;
+  margin: 4px 0 0 0;
+}
+
+/* Indicador de Carregamento */
+.loading-indic
+
+/* Indicador de carregamento */
+.loading-indicator {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 14px;
+  color: #999;
+}
+
+
+
+.search-item:hover {
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+/* Loading state */
+.loading-indicator {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 16px;
+  color: #777;
+}
+
+
+.dropdown-item:hover {
+  background-color: #f1f1f1; /* Change background color on hover */
+}
+
+/* Limit height of dropdown menu */
+.dropdown-menu {
+  width: 100%;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
 
 .navbar-toggler-icon {
   background-color: white;

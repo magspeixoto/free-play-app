@@ -31,14 +31,39 @@
       </ul>
 
       <!-- Search form -->
-      <form class="d-flex ms-lg-3" role="search" style="display: flex;">
-        <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
-        <button class="btn btn-outline-light" type="submit">
-          <i class="fas fa-search"></i> 
-        </button>
+      <form class="d-flex ms-lg-3" role="search" style="display: flex;" (ngSubmit)="searchGames()">
+        <div class="search-container" style="position: relative; width: 100%;"> <!-- Contêiner para a pesquisa -->
+          <input 
+            class="form-control me-2" 
+            type="search" 
+            placeholder="Pesquisar" 
+            aria-label="Search" 
+            [(ngModel)]="searchTerm" 
+            name="searchTerm" 
+            required 
+            (input)="searchGames()"> <!-- Use (input) event for live filtering -->
+          
+          <div *ngIf="filteredGames.length > 0 && searchTerm.trim()" class="search-results">
+            <div *ngFor="let game of filteredGames" class="search-item">
+              <a [routerLink]="['/games-details', game.id]" class="search-item-link">
+                <div class="search-item-thumbnail">
+                  <img [src]="game.thumbnail" alt="{{ game.title }} thumbnail" class="img-fluid">
+                </div>
+                <div class="search-item-info">
+                  <h6 class="search-item-title">{{ game.title }}</h6>
+                  <p class="search-item-description">{{ game.shortDescription }}</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        
       </form>
 
+      <!-- Loading indicator -->
+      <div *ngIf="isLoading" class="loading-indicator">
+        <p>Loading games...</p>
+      </div>
     </div>
-    
   </div>
 </nav>
