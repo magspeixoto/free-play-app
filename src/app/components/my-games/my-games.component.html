@@ -8,12 +8,12 @@
   <!-- Botões para filtrar jogos por lista -->
   <section>
     <div class="example-button-row">
+      <!-- Botão para mostrar todos os jogos -->
+      <button mat-flat-button (click)="loadGames('all')">Mostrar Todos os Jogos</button>
       <button mat-flat-button (click)="loadGames('later')">Jogar mais tarde</button>
       <button mat-flat-button (click)="loadGames('playing')">A Jogar Atualmente</button>
       <button mat-flat-button (click)="loadGames('played')">Jogado</button>
       <button mat-flat-button (click)="loadGames('completed')">Concluído</button>
-      <!-- Botão para mostrar todos os jogos -->
-      <button mat-flat-button (click)="loadGames('all')">Mostrar Todos os Jogos</button>
     </div>
   </section>
 

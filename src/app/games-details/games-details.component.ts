@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
 export class GamesDetailsComponent {
   game: GamesList | undefined;
   profile: any; // Perfil do usuário
-  selectedList: string | undefined = undefined;
+  selectedList: string;
 
   constructor(private dataService: DataService, private router: Router, private route: ActivatedRoute) {}
 
