@@ -22,7 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
 export class MyGamesComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['id', 'thumbnail', 'title', 'genre', 'menu'];
   dataSource = new MatTableDataSource<any>();
-  profile: any; // Perfil do usuário
+  profile: any = null; // Perfil do usuário
   listFilter: string = ''; // Tipo de lista atual
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -37,7 +37,7 @@ export class MyGamesComponent implements OnInit, AfterViewInit {
         this.profile = profile;
         this.loadGames('later'); // Carrega a lista padrão (Play Later)
       },
-      error: (error) => console.error('Erro ao carregar o perfil: ', error),
+      error: (error) => console.error('Erro ao carregar o perfil:', error),
     });
   }
 
@@ -57,35 +57,34 @@ export class MyGamesComponent implements OnInit, AfterViewInit {
   }
 
   loadGames(listType: string) {
-    // Define o tipo de lista a ser carregado
-    this.listFilter = listType;
-  
-    // Mapeia os nomes das listas para os tipos internos
+    this.listFilter = listType; // Atualiza o filtro
+
+    // Mapeia os nomes das listas no JSON para os botões
     const listMap: { [key: string]: string } = {
       later: 'Play Later',
       playing: 'Currently Playing',
       played: 'Played',
       completed: 'Completed',
     };
-  
+
     const selectedList = this.profile?.lists.find((list: any) => list.name === listMap[listType]);
+
     if (!selectedList) {
       console.warn('Lista não encontrada:', listType);
       this.dataSource.data = [];
       return;
     }
-  
-    // Obtém os IDs dos jogos
+
+    // Obtém os IDs dos jogos da lista
     const gameIds = selectedList.gamesIds;
-    console.log('Carregando jogos para a lista:', gameIds);
-  
-    // Requisição para buscar os jogos
-    this.dataService.getGamesByIds(gameIds).subscribe({
-      next: (games: any[]) => { // Esperamos que a resposta seja um array de jogos diretamente
-        console.log('Jogos carregados:', games);
-        this.dataSource.data = games;
-  
-        // Reconfigure o paginator se os dados forem atualizados após a exibição
+
+    // Filtra os jogos no JSON com base nos IDs
+    this.dataService.getGames().subscribe({
+      next: (gamesList: any[]) => {
+        const filteredGames = gamesList.filter(game => gameIds.includes(game.id));
+        this.dataSource.data = filteredGames;
+
+        // Reconfigura o paginator se os dados forem atualizados após a exibição
         if (this.paginator) {
           this.paginator.firstPage();
         }
