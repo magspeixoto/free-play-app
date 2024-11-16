@@ -69,5 +69,11 @@ export class MyGamesComponent implements AfterViewInit, OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+
+
+
   }
+
+
+  
 }

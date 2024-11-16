@@ -27,8 +27,8 @@ export class NavigationComponent {
   
     this.isLoading = true;  // Set loading to true while fetching data
     this.dataService.getGames().subscribe({
-      next: (games) => {
-        this.games = games;  // Store the list of games
+      next: (data) => {
+        this.games = data;  // Store the list of games
         this.filteredGames = this.games.filter(game => 
           game.title.toLowerCase().includes(this.searchTerm.toLowerCase())  // Use game.name
         );
