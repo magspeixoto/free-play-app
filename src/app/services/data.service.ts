@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { GamesList } from '../interfaces/games-list';
 import { Profile } from '../interfaces/profile';
+import { GameDetails } from '../interfaces/game-details';
 
 @Injectable({
   providedIn: 'root'
@@ -29,8 +30,11 @@ export class DataService {
   getGame(id: string): Observable<any>{
     return this.http.get<any>(`${this.apiUrl}/gameDetails/` + id)
   }
-
   
+// Obtém detalhes dos jogos com base nos IDs
+getGamesByIds(gameIds: string[]): Observable<any[]> {
+  return this.http.post<any[]>(`${this.apiUrl}/gamesList`, { id: gameIds });
+}
 
   
 
