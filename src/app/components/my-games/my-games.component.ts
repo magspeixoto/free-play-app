@@ -34,12 +34,14 @@ export class MyGamesComponent implements OnInit, AfterViewInit {
     const savedProfile = localStorage.getItem('userProfile');
     if (savedProfile) {
       this.profile = JSON.parse(savedProfile);
+      console.log('Perfil carregado do localStorage:', this.profile); // Log do perfil
       this.loadGames('all'); // Carrega todos os jogos no início
     } else {
       // Carrega do back-end se não houver dados locais
       this.dataService.getProfile().subscribe({
         next: (profile) => {
           this.profile = profile;
+          console.log('Perfil carregado do backend:', this.profile); // Log do perfil carregado do backend
           localStorage.setItem('userProfile', JSON.stringify(this.profile));
           this.loadGames('all');
         },
@@ -65,7 +67,7 @@ export class MyGamesComponent implements OnInit, AfterViewInit {
 
   loadGames(listType: string) {
     this.listFilter = listType; // Atualiza o filtro de lista
-
+  
     // Mapeia os nomes das listas no JSON para os botões
     const listMap: { [key: string]: string } = {
       later: 'Play Later',
@@ -74,24 +76,27 @@ export class MyGamesComponent implements OnInit, AfterViewInit {
       completed: 'Completed',
       all: 'All', // Para carregar todos os jogos
     };
-
-    const selectedList = this.profile?.lists.find((list: any) => list.name === listMap[listType]);
-
+  
+    const selectedListName = listMap[listType];
+  
+    // Tenta encontrar a lista correspondente no perfil
+    const selectedList = this.profile?.lists.find((list: any) => list.name === selectedListName);
+  
     if (!selectedList && listType !== 'all') {
-      console.warn('Lista não encontrada:', listType);
+      console.warn('Lista não encontrada:', selectedListName);
       this.dataSource.data = [];
       return;
     }
-
+  
     // Para 'all', busca todos os jogos associados ao perfil
     const gameIds = listType !== 'all' ? selectedList?.gamesIds : this.profile?.lists.flatMap((list: any) => list.gamesIds);
-
+  
     // Filtra os jogos no JSON com base nos IDs
     this.dataService.getGames().subscribe({
       next: (gamesList: any[]) => {
         const filteredGames = gamesList.filter(game => gameIds.includes(game.id));
         this.dataSource.data = filteredGames;
-
+  
         // Reconfigura o paginator se os dados forem atualizados após a exibição
         if (this.paginator) {
           this.paginator.firstPage();
@@ -100,18 +105,55 @@ export class MyGamesComponent implements OnInit, AfterViewInit {
       error: (error) => console.error('Erro ao carregar os jogos:', error),
     });
   }
+  
+  
 
-  moveGame(gameId: number, targetList: string) {
+  moveGame(gameId: string, targetListName: string) {
     if (!this.profile) return;
-
-    // Lógica para mover o jogo para outra lista
-    const gameIndex = this.profile.lists.findIndex((list: any) => list.name === targetList);
-    if (gameIndex !== -1) {
-      this.profile.lists[gameIndex].gamesIds.push(gameId);
+  
+    // Mapeamento dos nomes das listas para correspondência exata com o perfil do usuário
+    const listMap: { [key: string]: string } = {
+      later: 'Play Later',
+      playing: 'Currently Playing',
+      played: 'Played',
+      completed: 'Completed',
+    };
+  
+    // Obter o nome correto da lista de destino a partir do mapeamento
+    const targetListCorrectName = listMap[targetListName];
+  
+    // Verifica se a lista de destino existe no perfil
+    const targetList = this.profile.lists.find((list: any) => list.name === targetListCorrectName);
+  
+    if (!targetList) {
+      console.warn('Lista de destino não encontrada:', targetListCorrectName);
+      return;
     }
-
-    // Salva no localStorage
+  
+    // Encontrar o jogo em todas as listas e removê-lo da lista atual
+    let gameFoundAndRemoved = false;
+    this.profile.lists.forEach((list: any) => {
+      const gameIndex = list.gamesIds.indexOf(gameId);
+      if (gameIndex !== -1) {
+        // Remover o jogo da lista atual
+        list.gamesIds.splice(gameIndex, 1);
+        gameFoundAndRemoved = true;
+      }
+    });
+  
+    if (!gameFoundAndRemoved) {
+      console.warn('Jogo não encontrado nas listas do perfil');
+      return;
+    }
+  
+    // Adicionar o jogo à lista de destino
+    targetList.gamesIds.push(gameId);
+  
+    // Atualizar o localStorage com o novo perfil
     localStorage.setItem('userProfile', JSON.stringify(this.profile));
-    this.loadGames(this.listFilter); // Atualiza a lista após mover o jogo
+  
+    // Recarregar a lista de jogos para refletir a mudança
+    this.loadGames(this.listFilter); // Atualiza a lista de jogos exibida
   }
+  
 }
