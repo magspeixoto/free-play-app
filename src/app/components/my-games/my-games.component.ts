@@ -19,55 +19,78 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: './my-games.component.html',
   styleUrl: './my-games.component.scss'
 })
-export class MyGamesComponent implements AfterViewInit, OnInit {
-  games: GamesList[] = []
-  displayedColumns: string[] = ['id', 'thumbnail', 'title', 'genre', 'menu']
-  dataSource = new MatTableDataSource<GamesList>();
-  listFilter: string = ''; // Define o tipo de lista a ser filtrado
+export class MyGamesComponent implements OnInit, AfterViewInit {
+  displayedColumns: string[] = ['id', 'thumbnail', 'title', 'genre', 'menu'];
+  dataSource = new MatTableDataSource<any>();
+  profile: any; // Perfil do usuário
+  listFilter: string = ''; // Tipo de lista atual
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator
-  @ViewChild(MatSort) sort!: MatSort
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
-  //constructor(private dataService: DataService) {
-  // Assign the data to the data source for the table to render
-  //  this.dataSource = new MatTableDataSource<GamesList>()
-  //}
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService) {}
+
+  ngOnInit() {
+    // Carrega o perfil do usuário
+    this.dataService.getProfile().subscribe({
+      next: (profile) => {
+        this.profile = profile;
+        this.loadGames('later'); // Carrega a lista padrão (Play Later)
+      },
+      error: (error) => console.error('Erro ao carregar o perfil: ', error),
+    });
+  }
 
   ngAfterViewInit() {
-    if (this.paginator && this.sort) {
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    }
+    // Configura paginator e sort após a inicialização do DOM
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    this.dataSource.filter = filterValue;
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
 
-  ngOnInit() {
-    this.dataService.getGames().subscribe({
-      next: (data) => {
-        this.games = data;
-        this.dataSource.data = this.games;
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
+  loadGames(listType: string) {
+    // Define o tipo de lista a ser carregado
+    this.listFilter = listType;
+  
+    // Mapeia os nomes das listas para os tipos internos
+    const listMap: { [key: string]: string } = {
+      later: 'Play Later',
+      playing: 'Currently Playing',
+      played: 'Played',
+      completed: 'Completed',
+    };
+  
+    const selectedList = this.profile?.lists.find((list: any) => list.name === listMap[listType]);
+    if (!selectedList) {
+      console.warn('Lista não encontrada:', listType);
+      this.dataSource.data = [];
+      return;
+    }
+  
+    // Obtém os IDs dos jogos
+    const gameIds = selectedList.gamesIds;
+    console.log('Carregando jogos para a lista:', gameIds);
+  
+    // Requisição para buscar os jogos
+    this.dataService.getGamesByIds(gameIds).subscribe({
+      next: (games: any[]) => { // Esperamos que a resposta seja um array de jogos diretamente
+        console.log('Jogos carregados:', games);
+        this.dataSource.data = games;
+  
+        // Reconfigure o paginator se os dados forem atualizados após a exibição
+        if (this.paginator) {
+          this.paginator.firstPage();
+        }
       },
-      error: (error) => console.log('Erro ao carregar dados: ', error)
+      error: (error) => console.error('Erro ao carregar os jogos:', error),
     });
-
-  }
-  // Filtro por tipo de lista
-  filterByList(listType: string) {
-    this.listFilter = listType; // Define o tipo de lista a ser filtrado
-    this.dataSource.data = this.games.filter((game) => game.listType === listType || listType === '');
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
   }
 }
