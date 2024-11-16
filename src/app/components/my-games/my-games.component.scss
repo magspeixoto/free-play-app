@@ -89,6 +89,41 @@ table.mat-table {
   text-align: center;
   padding: 16px;
 }
+/* Altere o fundo do menu completo */
+::ng-deep .mat-menu {
+  background-color: #FF8C00 !important; /* Cor laranja para o menu */
+}
+
+/* Altere o fundo de cada item */
+::ng-deep .mat-menu-item {
+  background-color: #CD853F !important; /* Cor laranja mais suave */
+  color: white !important;
+}
+
+.mat-primary {
+  --mat-stepper-header-selected-state-icon-background-color: #CD853F;
+  --mat-stepper-header-selected-state-icon-foreground-color: #CD853F;
+  --mat-stepper-header-edit-state-icon-background-color: #CD853F;
+  --mat-stepper-header-edit-state-icon-foreground-color: #CD853F;
+}
+
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input {
+  color:#CD853F;
+  caret-color: #CD853F!important;
+}
+
+.mat-mdc-unelevated-button:not(:disabled) {
+  background-color: #CD853F;
+  color: #212529;
+}
+
+/* Altere a cor do item ao passar o mouse */
+::ng-deep .mat-menu-item:hover {
+  background-color: #FF8C00 !important; /* Cor laranja vibrante no hover */
+  color: white !important;
+}
+
 
 // Estilo para o paginador
 .mat-paginator {

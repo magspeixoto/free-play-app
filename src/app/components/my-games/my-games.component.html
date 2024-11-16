@@ -53,7 +53,7 @@
           <button mat-icon-button [matMenuTriggerFor]="menu">
             <mat-icon>more_vert</mat-icon>
           </button>
-          <mat-menu #menu="matMenu">
+          <mat-menu #menu="matMenu" class="custom-menu">
             <button mat-menu-item (click)="moveGame(row.id, 'later')">
               <span>Jogar mais tarde</span>
             </button>
