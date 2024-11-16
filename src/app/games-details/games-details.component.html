@@ -4,16 +4,16 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card shadow-sm rounded-lg border-0 overflow-hidden" *ngIf="game">
-                <img src="{{game?.thumbnail}}" class="card-img-top" alt="{{game?.title}}"
+                <img src="{{game.thumbnail}}" class="card-img-top" alt="{{game.title}}"
                     style="object-fit: cover; height: 300px;">
                 <div class="card-body">
-                    <h3 class="card-title">{{game?.title}}
-                        <small class="text-muted">(#{{game?.id}})</small>
+                    <h3 class="card-title">{{game.title}}
+                        <small class="text-muted">(#{{game.id}})</small>
                     </h3>
-                    <p class="card-text"><strong>Genre:</strong> {{game?.genre}}</p>
-                    <p class="card-text"><strong>Platform:</strong> {{game?.platform}}</p>
-                    <p class="card-text"><strong>Developer:</strong> {{game?.developer}}</p>
-                    <p class="card-text"><strong>Release Date:</strong> {{game?.releaseDate}}</p>
+                    <p class="card-text"><strong>Genre:</strong> {{game.genre}}</p>
+                    <p class="card-text"><strong>Platform:</strong> {{game.platform}}</p>
+                    <p class="card-text"><strong>Developer:</strong> {{game.developer}}</p>
+                    <p class="card-text"><strong>Release Date:</strong> {{game.releaseDate}}</p>
 
                     <!-- Mostrar listas associadas -->
                     <div>

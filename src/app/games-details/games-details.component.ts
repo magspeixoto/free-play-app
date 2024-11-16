@@ -78,7 +78,7 @@ export class GamesDetailsComponent {
   /**
    * Adiciona o jogo à lista selecionada.
    */
-  addToList(gameId: number | undefined, listKey: string) {
+  addToList(gameId: string | undefined, listKey: string) {
     if (!gameId || !this.profile || !listKey) return;
 
     const listMap: { [key: string]: string } = {
