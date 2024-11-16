@@ -1,6 +1,6 @@
 
 export interface GamesList {
-    id: number
+    id: string
     title: string
     thumbnail: string
     shortDescription: string

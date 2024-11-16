@@ -101,17 +101,44 @@ export class MyGamesComponent implements OnInit, AfterViewInit {
     });
   }
 
-  moveGame(gameId: number, targetList: string) {
+  moveGame(gameId: string, targetList: string) {
     if (!this.profile) return;
-
-    // Lógica para mover o jogo para outra lista
-    const gameIndex = this.profile.lists.findIndex((list: any) => list.name === targetList);
-    if (gameIndex !== -1) {
-      this.profile.lists[gameIndex].gamesIds.push(gameId);
+  
+    // Encontre a lista de origem, onde o jogo está atualmente
+    const currentList = this.profile.lists.find((list: any) => list.gamesIds.includes(gameId));
+    console.log('Lista atual do jogo:', currentList); // Log para depuração
+  
+    // Encontre o índice da lista de destino no perfil
+    const targetListIndex = this.profile.lists.findIndex((list: any) => list.name === targetList);
+    console.log('Índice da lista de destino:', targetListIndex); // Log para depuração
+  
+    // Verifica se a lista de origem e a lista de destino foram encontradas
+    if (!currentList) {
+      console.warn('Lista de origem não encontrada para o jogo ID:', gameId);
+      return;
     }
-
-    // Salva no localStorage
+  
+    if (targetListIndex === -1) {
+      console.warn('Lista de destino não encontrada:', targetList);
+      return;
+    }
+  
+    // Remover o jogo da lista atual (se encontrado)
+    const currentGameIndex = currentList.gamesIds.indexOf(gameId);
+    if (currentGameIndex !== -1) {
+      currentList.gamesIds.splice(currentGameIndex, 1); // Remove o jogo
+    }
+  
+    // Adicionar o jogo à lista de destino
+    const targetListObj = this.profile.lists[targetListIndex];
+    targetListObj.gamesIds.push(gameId); // Adiciona o ID do jogo à lista de destino
+  
+    console.log('Lista de destino após adição:', targetListObj); // Log para depuração
+  
+    // Salve o perfil atualizado no localStorage
     localStorage.setItem('userProfile', JSON.stringify(this.profile));
-    this.loadGames(this.listFilter); // Atualiza a lista após mover o jogo
+  
+    // Recarregar a lista de jogos após mover o jogo
+    this.loadGames(this.listFilter);
   }
 }
