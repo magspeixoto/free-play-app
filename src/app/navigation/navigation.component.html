@@ -12,27 +12,37 @@
 
     <!-- Navbar links -->
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav w-100 d-flex justify-content-around">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/games-list" routerLinkActive="active">
-            <i class="fas fa-gamepad"></i> Jogos
+      <ul class="navbar-nav w-100 d-flex justify-content-around align-items-center">
+        <!-- Jogos -->
+        <li class="nav-item d-flex align-items-center">
+          <a class="nav-link d-flex align-items-center" routerLink="/games-list" routerLinkActive="active">
+            <i class="fas fa-gamepad me-2"></i>
+            <span>Jogos</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/my-games" routerLinkActive="active">
-            <i class="fas fa-list"></i> Meus Jogos
+        <!-- Meus Jogos -->
+        <li class="nav-item d-flex align-items-center">
+          <a class="nav-link d-flex align-items-center" routerLink="/my-games" routerLinkActive="active">
+            <i class="fas fa-list me-2"></i>
+            <span>Meus Jogos</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/profile" routerLinkActive="active">
-            <i class="fas fa-user"></i> Perfil
+        <!-- Perfil -->
+        <li class="nav-item d-flex align-items-center">
+          <a class="nav-link d-flex flex-column align-items-center text-center" routerLink="/profile" routerLinkActive="active">
+            <img 
+              [src]="userProfile?.avatar" 
+              alt="User Profile" 
+              class="user-profile-img" 
+              style="height: 40px; width: 40px; border-radius: 50%; margin-bottom: 5px;">
+            <span style="font-size: 0.9rem;">{{ userProfile?.name }}</span>
           </a>
         </li>
       </ul>
 
       <!-- Search form -->
-      <form class="d-flex ms-lg-3" role="search" style="display: flex;" (ngSubmit)="searchGames()">
-        <div class="search-container" style="position: relative; width: 100%;"> <!-- Contêiner para a pesquisa -->
+      <form class="d-flex ms-lg-3" role="search" (ngSubmit)="searchGames()">
+        <div class="search-container" style="position: relative; width: 100%;">
           <input 
             class="form-control me-2" 
             type="search" 
@@ -41,7 +51,7 @@
             [(ngModel)]="searchTerm" 
             name="searchTerm" 
             required 
-            (input)="searchGames()"> <!-- Use (input) event for live filtering -->
+            (input)="searchGames()"> 
           
           <div *ngIf="filteredGames.length > 0 && searchTerm.trim()" class="search-results">
             <div *ngFor="let game of filteredGames" class="search-item">
@@ -57,13 +67,7 @@
             </div>
           </div>
         </div>
-        
       </form>
-
-      <!-- Loading indicator -->
-      <div *ngIf="isLoading" class="loading-indicator">
-        <p>Loading games...</p>
-      </div>
     </div>
   </div>
 </nav>
