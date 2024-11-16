@@ -11,17 +11,16 @@
 
 .avatar-container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
   margin-bottom: 15px;
-  position: relative;
 }
 
 .avatar-container img {
   width: 80px;
   height: 80px;
-  border-radius: 50%;
+  border-radius: 50%; /* Makes the avatar round */
   object-fit: cover;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
 }
@@ -29,78 +28,62 @@
 .avatar-placeholder {
   width: 80px;
   height: 80px;
-  border-radius: 50%;
+  border-radius: 50%; /* Makes the placeholder round */
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 32px;
   color: #fff;
   font-weight: bold;
+  background-color: #6c757d;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+  margin-bottom: 20px;
 }
 
-.delete-button {
-  background-color: #dc3545;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 4px 8px;
-  font-size: 12px;
-  cursor: pointer;
-  margin-top: 8px;
-  transition: background-color 0.3s ease;
+
+h2 {
+  font-size: 24px;
+  color: #343a40;
+  margin: 10px 0;
 }
 
-.delete-button:hover {
-  background-color: #c82333;
-}
-
-.editable-field {
-  margin: 15px 0;
-  text-align: left;
-}
-
-.editable-field h2,
-.editable-field p {
+.profile-header p {
   font-size: 16px;
-  color: #495057;
-  margin: 5px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  color: #6c757d;
+  margin: 5px 0 20px 0;
 }
 
-.editable-field button {
-  background-color: transparent;
-  border: none;
-  color: #CD853F;
-  font-size: 14px;
-  cursor: pointer;
+
+h3 {
+  font-size: 20px;
+  color: #343a40;
+  margin-top: 20px;
+}
+
+ul {
+  list-style-type: none;
   padding: 0;
+  margin: 0;
 }
 
-.editable-field button:hover {
-  text-decoration: underline;
-}
-
-.editable-field input {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ced4da;
-  border-radius: 5px;
+ul li {
   font-size: 16px;
   color: #495057;
-  margin-top: 8px;
+  background-color: #e9ecef;
+  border-radius: 4px;
+  padding: 8px;
+  margin: 6px 0;
 }
 
-.editable-field input:focus {
-  border-color: #80bdff;
-  outline: none;
-  box-shadow: 0px 0px 5px rgba(228, 197, 70, 0.5);
+ul li strong {
+  color: #CD853F;
 }
 
-button.save-profile {
-  background-color: #007bff;
+
+
+.avatar-container .delete-button, 
+.avatar-container .upload-button {
+  background-color: #CD853F;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -108,9 +91,73 @@ button.save-profile {
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-top: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-button.save-profile:hover {
-  background-color: #0056b3;
+.avatar-container .delete-button:hover, 
+.avatar-container .upload-button:hover {
+  background-color: #a07532;
+}
+
+h2 {
+  font-size: 22px;
+  color: #343a40;
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+p {
+  font-size: 16px;
+  color: #6c757d;
+  margin: 5px 0;
+}
+
+.edit-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0;
+  font-size: 16px;
+  padding: 10px 15px;
+  border: 1px solid #e9ecef;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.edit-field span {
+  color: #495057;
+  font-weight: 500;
+}
+
+.edit-field .edit-button {
+  background-color: transparent;
+  color: #CD853F;
+  border: none;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.edit-field .edit-button:hover {
+  color: #a07532;
+}
+
+.save-button {
+  background-color: #CD853F;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.save-button:hover {
+  background-color: #a07532;
 }

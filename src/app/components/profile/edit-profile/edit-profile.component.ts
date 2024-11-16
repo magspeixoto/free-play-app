@@ -36,6 +36,22 @@ export class EditProfileComponent implements OnInit {
     this.isEditing[field] = !this.isEditing[field];
   }
 
+  changeAvatar(event: Event): void {
+    const fileInput = event.target as HTMLInputElement;
+
+    if (fileInput.files && fileInput.files[0]) {
+      const file = fileInput.files[0];
+      const reader = new FileReader();
+
+      reader.onload = (e: any) => {
+        // Set the base64 string as the avatar source
+        this.profile.avatar = e.target.result;
+      };
+
+      reader.readAsDataURL(file);
+    }
+  }
+
   saveProfile() {
     this.dataService.updateProfile(this.profile).subscribe({
       next: () => {

@@ -1,39 +1,52 @@
 <div *ngIf="profile">
-    <div class="profile-header">
-      <div class="avatar-container" style="margin-top: 150px;">
-        <ng-container *ngIf="profile.avatar; else noAvatar">
-          <img [src]="profile.avatar" alt="User Avatar">
-          <button class="delete-button" (click)="deleteAvatar()">Delete Avatar</button>
-        </ng-container>
-        <ng-template #noAvatar>
-          <div class="avatar-placeholder" [style.backgroundColor]="'#6c757d'">
-            <span>{{ profile.name[0] | uppercase }}</span>
-          </div>
-        </ng-template>
-      </div>
-  
-      <div class="editable-field">
-        <h2 *ngIf="!isEditing['name']">{{ profile.name }}
-          <button (click)="toggleEdit('name')">Edit</button>
-        </h2>
-        <input *ngIf="isEditing['name']" [(ngModel)]="profile.name" (blur)="toggleEdit('name')" />
-      </div>
-  
-      <div class="editable-field">
-        <p *ngIf="!isEditing['email']">Email: {{ profile.email }}
-          <button (click)="toggleEdit('email')">Edit</button>
-        </p>
-        <input *ngIf="isEditing['email']" [(ngModel)]="profile.email" (blur)="toggleEdit('email')" />
-      </div>
-  
-      <div class="editable-field">
-        <p *ngIf="!isEditing['password']">Password: ********
-          <button (click)="toggleEdit('password')">Edit</button>
-        </p>
-        <input *ngIf="isEditing['password']" [(ngModel)]="profile.password" type="password" (blur)="toggleEdit('password')" />
-      </div>
-  
-      <button (click)="saveProfile()">Save Changes</button>
+  <div class="profile-header" style="margin-top: 150px;">
+    <div class="avatar-container">
+      <ng-container *ngIf="profile.avatar; else noAvatar">
+        <img [src]="profile.avatar" alt="User Avatar">
+        <button class="upload-button" (click)="uploadInput.click()">Change Avatar</button>
+        <button class="upload-button" (click)="deleteAvatar()">Delete Avatar</button>
+        <input
+          type="file"
+          #uploadInput
+          style="display: none;"
+          (change)="changeAvatar($event)"
+        />
+      </ng-container>
+      <ng-template #noAvatar>
+        <div class="avatar-placeholder" [style.backgroundColor]="'#6c757d'">
+          <span>{{ profile.name[0] | uppercase }}</span>
+        </div>
+        <button class="upload-button" (click)="uploadInput.click()">Upload Avatar</button>
+        <input
+          type="file"
+          #uploadInput
+          style="display: none;"
+          (change)="changeAvatar($event)"
+        />
+      </ng-template>
     </div>
+
+    <div class="edit-field">
+      <h2 *ngIf="!isEditing['name']">{{ profile.name }}
+        <button class="edit-button" (click)="toggleEdit('name')">Edit</button>
+      </h2>
+      <input *ngIf="isEditing['name']" [(ngModel)]="profile.name" (blur)="toggleEdit('name')" />
+    </div>
+
+    <div class="edit-field">
+      <p *ngIf="!isEditing['email']">Email: {{ profile.email }}
+        <button class="edit-button" (click)="toggleEdit('email')">Edit</button>
+      </p>
+      <input *ngIf="isEditing['email']" [(ngModel)]="profile.email" (blur)="toggleEdit('email')" />
+    </div>
+
+    <div class="edit-field">
+      <p *ngIf="!isEditing['password']">Password: ********
+        <button class="edit-button" (click)="toggleEdit('password')">Edit</button>
+      </p>
+      <input *ngIf="isEditing['password']" [(ngModel)]="profile.password" type="password" (blur)="toggleEdit('password')" />
+    </div>
+
+    <button class="save-button" (click)="saveProfile()">Save Changes</button>
   </div>
-  
+</div>
