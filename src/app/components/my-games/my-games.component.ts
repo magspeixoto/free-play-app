@@ -17,7 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
   standalone: true,
   imports: [RouterLink, MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, FormsModule, MatButtonModule, MatMenuModule, MatIconModule],
   templateUrl: './my-games.component.html',
-  styleUrl: './my-games.component.scss'
+  styleUrls: ['./my-games.component.scss']
 })
 export class MyGamesComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['id', 'thumbnail', 'title', 'genre', 'menu'];
@@ -31,14 +31,21 @@ export class MyGamesComponent implements OnInit, AfterViewInit {
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
-    // Carrega o perfil do usuário
-    this.dataService.getProfile().subscribe({
-      next: (profile) => {
-        this.profile = profile;
-        this.loadGames('later'); // Carrega a lista padrão (Play Later)
-      },
-      error: (error) => console.error('Erro ao carregar o perfil:', error),
-    });
+    const savedProfile = localStorage.getItem('userProfile');
+    if (savedProfile) {
+      this.profile = JSON.parse(savedProfile);
+      this.loadGames('all'); // Carrega todos os jogos no início
+    } else {
+      // Carrega do back-end se não houver dados locais
+      this.dataService.getProfile().subscribe({
+        next: (profile) => {
+          this.profile = profile;
+          localStorage.setItem('userProfile', JSON.stringify(this.profile));
+          this.loadGames('all');
+        },
+        error: (error) => console.error('Erro ao carregar o perfil:', error),
+      });
+    }
   }
 
   ngAfterViewInit() {
@@ -57,7 +64,7 @@ export class MyGamesComponent implements OnInit, AfterViewInit {
   }
 
   loadGames(listType: string) {
-    this.listFilter = listType; // Atualiza o filtro
+    this.listFilter = listType; // Atualiza o filtro de lista
 
     // Mapeia os nomes das listas no JSON para os botões
     const listMap: { [key: string]: string } = {
@@ -65,18 +72,19 @@ export class MyGamesComponent implements OnInit, AfterViewInit {
       playing: 'Currently Playing',
       played: 'Played',
       completed: 'Completed',
+      all: 'All', // Para carregar todos os jogos
     };
 
     const selectedList = this.profile?.lists.find((list: any) => list.name === listMap[listType]);
 
-    if (!selectedList) {
+    if (!selectedList && listType !== 'all') {
       console.warn('Lista não encontrada:', listType);
       this.dataSource.data = [];
       return;
     }
 
-    // Obtém os IDs dos jogos da lista
-    const gameIds = selectedList.gamesIds;
+    // Para 'all', busca todos os jogos associados ao perfil
+    const gameIds = listType !== 'all' ? selectedList?.gamesIds : this.profile?.lists.flatMap((list: any) => list.gamesIds);
 
     // Filtra os jogos no JSON com base nos IDs
     this.dataService.getGames().subscribe({
@@ -91,5 +99,19 @@ export class MyGamesComponent implements OnInit, AfterViewInit {
       },
       error: (error) => console.error('Erro ao carregar os jogos:', error),
     });
+  }
+
+  moveGame(gameId: number, targetList: string) {
+    if (!this.profile) return;
+
+    // Lógica para mover o jogo para outra lista
+    const gameIndex = this.profile.lists.findIndex((list: any) => list.name === targetList);
+    if (gameIndex !== -1) {
+      this.profile.lists[gameIndex].gamesIds.push(gameId);
+    }
+
+    // Salva no localStorage
+    localStorage.setItem('userProfile', JSON.stringify(this.profile));
+    this.loadGames(this.listFilter); // Atualiza a lista após mover o jogo
   }
 }

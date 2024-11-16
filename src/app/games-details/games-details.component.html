@@ -3,20 +3,42 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card shadow-sm rounded-lg border-0 overflow-hidden">
-                <img src="{{game?.thumbnail}}" class="card-img-top" alt="{{game?.title}}" style="object-fit: cover; height: 300px;">
+            <div class="card shadow-sm rounded-lg border-0 overflow-hidden" *ngIf="game">
+                <img src="{{game?.thumbnail}}" class="card-img-top" alt="{{game?.title}}"
+                    style="object-fit: cover; height: 300px;">
                 <div class="card-body">
-                    <h3 class="card-title">{{game?.title}} 
+                    <h3 class="card-title">{{game?.title}}
                         <small class="text-muted">(#{{game?.id}})</small>
                     </h3>
                     <p class="card-text"><strong>Genre:</strong> {{game?.genre}}</p>
                     <p class="card-text"><strong>Platform:</strong> {{game?.platform}}</p>
-                    <!-- <p class="card-text"><strong>Publisher:</strong> {{game?.publisher}}</p> -->
                     <p class="card-text"><strong>Developer:</strong> {{game?.developer}}</p>
                     <p class="card-text"><strong>Release Date:</strong> {{game?.releaseDate}}</p>
-                    
-                    <div class="d-flex gap-2 mt-3">
-                        <a href="{{game?.gameUrl}}" target="_blank" style="background-color: #CD853F; color: white;" class="btn btn-lg">Play Now</a>
+
+                    <!-- Mostrar listas associadas -->
+                    <div>
+                        <p><strong>Listas:</strong></p>
+                        <ul>
+                            <li *ngFor="let list of getGameLists()">
+                                {{ list }}
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Mostrar botão para adicionar à lista apenas se não estiver associado a nenhuma lista -->
+                    <div *ngIf="getGameLists().length === 0">
+                        <label for="addToList" class="form-label">Adicionar a uma lista:</label>
+                        <select id="addToList" class="form-select" [(ngModel)]="selectedList">
+                            <option value="">Selecione uma lista</option>
+                            <option *ngFor="let list of availableLists()" [value]="list.key">
+                                {{ list.display }}
+                            </option>
+                        </select>
+                        <button class="btn btn-secondary mt-2" 
+                            [disabled]="!selectedList" 
+                            (click)="addToList(game.id, selectedList)">
+                            Adicionar
+                        </button>
                     </div>
                 </div>
             </div>
