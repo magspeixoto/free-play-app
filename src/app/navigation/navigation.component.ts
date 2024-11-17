@@ -21,14 +21,19 @@ export class NavigationComponent implements OnInit {
 
   constructor(private dataService: DataService) {}
 
-  ngOnInit() {
-    // Carregar o perfil do usuário do localStorage
-  const savedProfile = localStorage.getItem('userProfile');
-  if (savedProfile) {
-    this.userProfile = JSON.parse(savedProfile);
-  }
-  }
+  ngOnInit(){
+    //this.animais = this.animaisService.getAnimais();
+    this.dataService.getProfile().subscribe({
+      next: (data) => {
+        console.log(data);
+        this.userProfile = data;
+      },
+      error: (error) => {
+        console.log('Algo correu mal:', error);
+      }
 
+    });
+  }
   // Fetch games from the service and filter based on search term
   searchGames(): void {
     if (!this.searchTerm.trim()) return;  // Avoid searching if the input is empty
