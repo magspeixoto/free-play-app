@@ -14,13 +14,6 @@
     <p>Email: {{ profile.email }}</p>
 
     <button (click)="navigateToEditProfile()" class="edit-button">
-      Edit Profile
+      Editar Perfil
     </button>
-
-  <h3>Lists:</h3>
-  <ul>
-    <li *ngFor="let list of profile.lists">
-      <strong>{{ list.name }}</strong> - Games: {{ list.gamesIds.join(', ') }}
-    </li>
-  </ul>
 </div>

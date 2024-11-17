@@ -20,7 +20,6 @@ export class ViewProfileComponent implements OnInit {
   dataService = inject(DataService);
 
   ngOnInit(){
-    //this.animais = this.animaisService.getAnimais();
     this.dataService.getProfile().subscribe({
       next: (data) => {
         console.log(data);
