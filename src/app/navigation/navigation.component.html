@@ -30,11 +30,18 @@
         <!-- Perfil -->
         <li class="nav-item d-flex align-items-center">
           <a class="nav-link d-flex flex-column align-items-center text-center" routerLink="/profile" routerLinkActive="active">
+            <ng-container *ngIf="userProfile.avatar; else noAvatar">
             <img 
               [src]="userProfile?.avatar" 
               alt="User Profile" 
               class="user-profile-img" 
               style="height: 40px; width: 40px; border-radius: 50%; margin-bottom: 5px;">
+            </ng-container>
+            <ng-template #noAvatar>
+              <div class="avatar-placeholder" [style.backgroundColor]="'#CD853F'">
+                <span>{{ userProfile.name[0] | uppercase }}</span>
+              </div>
+            </ng-template>
             <span style="font-size: 0.9rem;">{{ userProfile?.name }}</span>
           </a>
         </li>

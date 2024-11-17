@@ -179,3 +179,19 @@
 .app-my-games > * {
   margin-bottom: 50px;
 }
+
+.avatar-placeholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* Makes the placeholder round */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  color: #fff;
+  font-weight: bold;
+  background-color: #CD853F;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+  margin-bottom: 5px;
+}
+
